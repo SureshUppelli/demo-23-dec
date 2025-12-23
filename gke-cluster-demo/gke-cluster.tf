@@ -2,9 +2,6 @@ resource "google_container_cluster" "gke_cluster" {
   name     = "demo-gke-cluster"
   location = var.gcp_region1
   
-  # Node Locations: Get from Datasource: google_compute_zones
-  node_locations = data.google_compute_zones.available.names
-
   # Create the smallest possible default node pool and immediately delete it.
   remove_default_node_pool = true
   initial_node_count       = 1
@@ -38,4 +35,5 @@ resource "google_container_cluster" "gke_cluster" {
       display_name = "entire-internet"
     }
   }
+
 }
