@@ -1,0 +1,31 @@
+steps:
+
+  - id: 'tf-init'
+    name: 'hashicorp/terraform:light'
+    entrypoint: 'sh'
+    dir: 'gke-cluster-demo'
+    args:
+      - '-c'
+      - |
+        terraform init
+
+  - id: 'tf-plan'
+    name: 'hashicorp/terraform:light'
+    entrypoint: 'sh'
+    dir: 'gke-cluster-demo'
+    args:
+      - '-c'
+      - |
+        terraform plan -out=tfplan -var-file=terraform.tfvars
+
+  - id: 'tf-apply'
+    name: 'hashicorp/terraform:light'
+    entrypoint: 'sh'
+    dir: 'gke-cluster-demo'
+    args:
+      - '-c'
+      - |
+        terraform apply -auto-approve tfplan
+
+options:
+  logging: CLOUD_LOGGING_ONLY
