@@ -1,7 +1,7 @@
 steps:
 
   - id: 'tf-init'
-    name: 'hashicorp/terraform:light'
+    name: 'hashicorp/terraform:1.0.0'
     entrypoint: 'sh'
     dir: 'gke-cluster-demo'
     args:
@@ -10,7 +10,7 @@ steps:
         terraform init
 
   - id: 'tf-plan'
-    name: 'hashicorp/terraform:light'
+    name: 'hashicorp/terraform:1.0.0'
     entrypoint: 'sh'
     dir: 'gke-cluster-demo'
     args:
@@ -19,7 +19,7 @@ steps:
         terraform plan -out=tfplan -var-file=terraform.tfvars
 
   - id: 'tf-apply'
-    name: 'hashicorp/terraform:light'
+    name: 'hashicorp/terraform:1.0.0'
     entrypoint: 'sh'
     dir: 'gke-cluster-demo'
     args:
