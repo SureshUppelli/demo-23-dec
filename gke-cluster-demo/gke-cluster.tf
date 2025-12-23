@@ -10,7 +10,11 @@ resource "google_container_cluster" "gke_cluster" {
   network = google_compute_network.myvpc.self_link
   subnetwork = google_compute_subnetwork.mysubnet.self_link
 
-  # In production, change it to true (Enable it to avoid accidental deletion)
+
+  workload_identity_config {
+      workload_pool = "${var.gcp_project}.svc.id.goog"
+    }
+  
   deletion_protection = false
 
   # Private Cluster Configurations
@@ -22,8 +26,7 @@ resource "google_container_cluster" "gke_cluster" {
 
   # IP Address Ranges
   ip_allocation_policy {
-    #cluster_ipv4_cidr_block  = "10.1.0.0/21"
-    #services_ipv4_cidr_block = "10.2.0.0/21"
+    
     cluster_secondary_range_name = google_compute_subnetwork.mysubnet.secondary_ip_range[0].range_name
     services_secondary_range_name = google_compute_subnetwork.mysubnet.secondary_ip_range[1].range_name
   }
@@ -37,3 +40,4 @@ resource "google_container_cluster" "gke_cluster" {
   }
 
 }
+
