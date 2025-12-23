@@ -7,7 +7,7 @@ resource "google_container_node_pool" "linux_nodepool_1" {
   autoscaling {
     min_node_count = 1
     max_node_count = 3
-    location_policy = "ANY"  
+     
   }
   node_config {  
     preemptible  = true
@@ -19,6 +19,7 @@ resource "google_container_node_pool" "linux_nodepool_1" {
     ]
     tags = [tolist(google_compute_firewall.fw_ssh.target_tags)[0]]
     disk_size_gb = 20
-    disk_type = "pd-standard" # Supported pd-standard, pd-balanced or pd-ssd, default is pd-standard    
+    disk_type = "pd-standard"    
   }
 }
+
