@@ -19,7 +19,8 @@ resource "google_container_node_pool" "linux_nodepool_1" {
     ]
     tags = [tolist(google_compute_firewall.fw_ssh.target_tags)[0]]
     disk_size_gb = 20
-    disk_type = "pd-standard"    
+    disk_type = "pd-ssd"    
   }
 }
+
 
