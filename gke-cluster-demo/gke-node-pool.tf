@@ -4,11 +4,11 @@ resource "google_container_node_pool" "linux_nodepool_1" {
   location   = var.gcp_region1
   cluster    = google_container_cluster.gke_cluster.name
   initial_node_count = 1 # the number of nodes to create in each zone
-  autoscaling {
+ /* autoscaling {
     min_node_count = 1
-    max_node_count = 3
+    max_node_count = 2
      
-  }
+  }*/
   node_config {  
     preemptible  = true
     machine_type = var.machine_type
@@ -22,5 +22,6 @@ resource "google_container_node_pool" "linux_nodepool_1" {
     disk_type = "pd-ssd"    
   }
 }
+
 
 
