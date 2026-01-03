@@ -9,7 +9,7 @@ steps:
       - |
         terraform init
 
-    - id: 'tf-refresh'
+  - id: 'tf-refresh'
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: 'sh'
     dir: 'gke-cluster-demo'
