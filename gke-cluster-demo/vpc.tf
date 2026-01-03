@@ -1,6 +1,10 @@
 resource "google_compute_network" "myvpc" {
   name = "demo-vpc"
   auto_create_subnetworks = false
+  lifecycle {
+    prevent_destroy = true
+
+  }
 }
 
 resource "google_compute_subnetwork" "mysubnet" {
@@ -17,4 +21,5 @@ resource "google_compute_subnetwork" "mysubnet" {
     range_name    = "kubernetes-services-range"
     ip_cidr_range = var.services_ip_range
   }
+
 }
