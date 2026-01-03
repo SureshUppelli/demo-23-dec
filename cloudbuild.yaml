@@ -9,6 +9,15 @@ steps:
       - |
         terraform init
 
+    - id: 'tf-refresh'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'sh'
+    dir: 'gke-cluster-demo'
+    args:
+      - '-c'
+      - |
+        terraform refresh -var-file=terraform.tfvars
+
   - id: 'tf-plan'
     name: 'hashicorp/terraform:1.0.0'
     entrypoint: 'sh'
